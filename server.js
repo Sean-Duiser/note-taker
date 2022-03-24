@@ -44,7 +44,7 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
-app.get('/api/notes', (req, res) => {
+app.get('/', (req, res) => {
     const data = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
     const parseData = JSON.parse(data);
     res.json(parseData);
