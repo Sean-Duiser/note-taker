@@ -15,7 +15,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
-app.post('/api/notes', (req, res) => {
+app.post('/', (req, res) => {
     // Log that a POST request was received
     console.info(`${req.method} request received to submit note`);
 
@@ -44,7 +44,7 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
+app.get('/api/notes', (req, res) => {
     const data = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
     const parseData = JSON.parse(data);
     res.json(parseData);
