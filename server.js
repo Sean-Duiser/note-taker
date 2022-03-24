@@ -15,6 +15,35 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
+app.post('/api/notes', (req, res) => {
+    // Log that a POST request was received
+    console.info(`${req.method} request received to submit note`);
+
+    // Destructuring assignment for the items in req.body
+    const { title, text, } = req.body;
+
+    // If all the required properties are present
+    if (title && text) {
+        // Variable for the object we will save
+        const newNote = {
+            title,
+            text,
+            note_id: uuid(),
+        };
+
+        readAndAppend(newNote, './db/db.json');
+
+        const data = {
+            status: 'success',
+            body: newNote,
+        };
+
+        res.json(data);
+    } else {
+        res.json('Error in posting note');
+    }
+});
+
 app.get('/api/notes', (req, res) => {
     const data = fs.readFileSync(path.join(__dirname, './db/db.json'), "utf-8");
     const parseData = JSON.parse(data);
