@@ -33,7 +33,7 @@ app.post('/api/notes', (req, res) => {
             review_id: uuid(),
         };
 
-        fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        fs.readFileSync('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
@@ -41,7 +41,7 @@ app.post('/api/notes', (req, res) => {
 
                 parsedNotes.push(newNote);
 
-                fs.writeFile(
+                fs.writeFileSync(
                     './db/db.json',
                     JSON.stringify(parsedNotes, null, 4),
                     (writeErr) =>
