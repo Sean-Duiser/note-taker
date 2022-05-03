@@ -139,19 +139,19 @@ const renderNoteList = async (notes) => {
 
     liEl.append(spanEl);
 
-    if (delBtn) {
-      const delBtnEl = document.createElement('i');
-      delBtnEl.classList.add(
-        'fas',
-        'fa-trash-alt',
-        'float-right',
-        'text-danger',
-        'delete-note'
-      );
-      delBtnEl.addEventListener('click', handleNoteDelete);
 
-      liEl.append(delBtnEl);
-    }
+    const delBtnEl = document.createElement('i');
+    delBtnEl.classList.add(
+      'fas',
+      'fa-trash-alt',
+      'float-right',
+      'text-danger',
+      'delete-note'
+    );
+    delBtnEl.addEventListener('click', handleNoteDelete);
+
+    liEl.append(delBtnEl);
+
 
     return liEl;
   };
@@ -180,7 +180,7 @@ if (window.location.pathname === '/notes') {
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
-  delBtn.addEventListener('click', handleNoteDelete);
+  delBtnEl.addEventListener('click', handleNoteDelete);
 }
 
 getAndRenderNotes();

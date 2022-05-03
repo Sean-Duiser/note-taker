@@ -32,6 +32,8 @@ app.post('/api/notes', (req, res) => {
     res.json("You have successfully added a note");
 });
 
+
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
